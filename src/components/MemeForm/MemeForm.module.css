@@ -1,0 +1,41 @@
+.form {
+  display: grid;
+  grid-template-rows: 40px 40px;
+  grid-template-columns: 1fr 1fr;
+
+  row-gap: 15px;
+  column-gap: 17px;
+  margin-top: 36px;
+  margin-bottom: 36px;
+}
+
+.form-input {
+  border: 1px solid #D5D4D8;
+  border-radius: 5px;
+  padding: 0 11px;
+
+  font-size: 12px;
+}
+
+.form-button {
+  grid-column: span 2;
+  /* from the beginning to the end: */
+  /* grid-column: 1 / -1; */
+
+  font-size: 16px;
+  font-family: "Karla", sans-serif;
+  letter-spacing: -1px;
+  font-weight: 700;
+
+  background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+  color: #FFFFFF;
+  border-radius: 5px;
+}
+
+.meme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.meme-image {}
