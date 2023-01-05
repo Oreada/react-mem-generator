@@ -49,7 +49,7 @@
 
 .meme-text-top {
   position: absolute;
-  top: 5px;
+  top: 10px;
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
@@ -57,7 +57,7 @@
 
 .meme-text-bottom {
   position: absolute;
-  bottom: 5px;
+  bottom: 10px;
   left: 5px;
   left: 50%;
   transform: translateX(-50%);
