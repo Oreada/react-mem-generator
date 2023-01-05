@@ -1,11 +1,24 @@
-import { useState } from 'react';
-import { memesData } from '../../api/memesData';
+import { useEffect, useState } from 'react';
 import styles from './MemeForm.module.css';
 
 interface MemeObj {
 	topText: string;
 	bottomText: string;
 	randomImage: string;
+}
+
+interface MemesData {
+	success: boolean;
+	data: {
+		memes: {
+			id: string;
+			name: string;
+			url: string;
+			width: number;
+			height: number;
+			box_count: number;
+		}[];
+	};
 }
 
 const initialMemeValue = {
@@ -16,6 +29,14 @@ const initialMemeValue = {
 
 export function MemeForm() {
 	const [meme, setMeme] = useState<MemeObj>(initialMemeValue);
+
+	const [memesData, setMemesData] = useState<MemesData | null>(null);
+
+	useEffect(() => {
+		fetch('https://api.imgflip.com/get_memes')
+			.then(res => res.json())
+			.then(data => setMemesData(data))
+	}, []);
 
 	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
@@ -31,13 +52,15 @@ export function MemeForm() {
 	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 
-		const randomId = Math.floor(Math.random() * memesData.data.memes.length);
-		setMeme((prev) => {
-			return {
-				...prev,
-				randomImage: memesData.data.memes[randomId].url
-			}
-		});
+		if (memesData) {
+			const randomId = Math.floor(Math.random() * memesData.data.memes.length);
+			setMeme((prev) => {
+				return {
+					...prev,
+					randomImage: memesData.data.memes[randomId].url
+				}
+			});
+		}
 	};
 
 	return (
