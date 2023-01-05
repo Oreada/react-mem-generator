@@ -15,11 +15,24 @@ const initialMemeValue = {
 };
 
 export function MemeForm() {
-	const [imageUrl, setImageUrl] = useState<MemeObj>(initialMemeValue);
+	const [meme, setMeme] = useState<MemeObj>(initialMemeValue);
 
-	const handleClick = () => {
+	const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = event.target;
+
+		setMeme((prev) => {
+			return {
+				...prev,
+				[name]: value,
+			}
+		})
+	}
+
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+
 		const randomId = Math.floor(Math.random() * memesData.data.memes.length);
-		setImageUrl((prev) => {
+		setMeme((prev) => {
 			return {
 				...prev,
 				randomImage: memesData.data.memes[randomId].url
@@ -30,20 +43,28 @@ export function MemeForm() {
 	return (
 		<main>
 
-			<div className={styles['form']}>
+			<form className={styles['form']} onSubmit={handleSubmit}>
 				<input
 					type="text"
 					placeholder="Top text"
-					className={styles['form-input']} />
+					className={styles['form-input']}
+					name="topText"
+					value={meme.topText}
+					onChange={handleChange} />
 				<input
 					type="text"
 					placeholder="Bottom text"
-					className={styles['form-input']} />
-				<button className={styles['form-button']} onClick={handleClick}>Get a new meme image</button>
-			</div>
+					className={styles['form-input']}
+					name="bottomText"
+					value={meme.bottomText}
+					onChange={handleChange} />
+				<button className={styles['form-button']}>Get a new meme image</button>
+			</form>
 
 			<div className={styles['meme']}>
-				<img className={styles['meme-image']} src={imageUrl.randomImage} alt="Meme" />
+				<img className={styles['meme-image']} src={meme.randomImage} alt="Meme" />
+				<h2 className={styles['meme-text-top']}>{meme.topText}</h2>
+				<h2 className={styles['meme-text-bottom']}>{meme.bottomText}</h2>
 			</div>
 		</main>
 	)

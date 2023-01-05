@@ -33,9 +33,35 @@
 }
 
 .meme {
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  /* align-items: center;
+  justify-content: center; */
+
+  font-family: "Alfa Slab One", sans-serif;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  color: #c1e6d4;
+  text-shadow: 1px 1px 5px #000;
 }
 
 .meme-image {}
+
+.meme-text-top {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.meme-text-bottom {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
