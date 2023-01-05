@@ -1,0 +1,34 @@
+.header {
+  background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+  color: #FFFFFF;
+}
+
+.header-container {
+  max-width: 700px;
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 65px;
+
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.logo-box {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.logo-text {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -2px;
+}
+
+.title {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+}
